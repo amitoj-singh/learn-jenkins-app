@@ -41,7 +41,7 @@ pipeline {
         stage('E2E Test') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.60.0-noble'
+                    image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
                     reuseNode true
                     // don't do this to avoid access issues later while reading files created / modified by the root user
                     // args '-u root:root'
