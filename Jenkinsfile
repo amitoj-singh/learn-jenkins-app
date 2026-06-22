@@ -83,23 +83,6 @@ pipeline {
         stage('Deploy Staging') {
             agent {
                 docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    
-                '''
-                script {
-                    env.STAGING_URL = sh(script: "", returnStdout: true).trim()
-                }
-            }
-        }
-
-        stage('Deploy Staging') {
-            agent {
-                docker {
                     image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
                     reuseNode true
                 }
