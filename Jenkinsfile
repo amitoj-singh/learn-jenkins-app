@@ -8,12 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Docker') {
-            steps {
-                sh 'docker build -t my-playwright .'
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -21,6 +15,7 @@ pipeline {
                     reuseNode true
                 }
             }
+            
             steps {
                 sh '''
                     ls -la
@@ -71,7 +66,7 @@ pipeline {
                     steps {
                         echo 'Local E2E Test stage'
                         sh '''
-                            serve -s build & # & i sused to start the server in the background
+                            serve -s build & # & is used to start the server in the background
                             sleep 10 # wait for the server to start
                             npx playwright test --reporter=html
                         '''
