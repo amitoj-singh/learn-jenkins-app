@@ -61,7 +61,7 @@ pipeline {
                 stage('E2E Test') {
                     agent {
                         docker {
-                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            image 'my-playwright'
                             reuseNode true
                             // don't do this to avoid access issues later while reading files created / modified by the root user
                             // args '-u root:root'
@@ -71,8 +71,7 @@ pipeline {
                     steps {
                         echo 'Local E2E Test stage'
                         sh '''
-                            npm install serve
-                            node_modules/.bin/serve -s build & # & i sused to start the server in the background
+                            serve -s build & # & i sused to start the server in the background
                             sleep 10 # wait for the server to start
                             npx playwright test --reporter=html
                         '''
